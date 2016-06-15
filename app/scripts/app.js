@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name openlayrFrontendApp
- * @description
- * # openlayrFrontendApp
- *
- * Main module of the application.
- */
 angular
   .module('openlayrFrontendApp', [
     'ngAnimate',
@@ -24,10 +16,16 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'vm'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/product/:productId', {
+	templateUrl: 'views/product.html',
+	controller: 'ProductCtrl',
+	controllerAs: 'vm',
+	resolve: {
+	  product: function($route, productService) {
+	    var productId = $route.current.params.productId;
+	    return productService.getProduct(productId);
+	  }
+	}
       })
       .otherwise({
         redirectTo: '/'
