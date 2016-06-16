@@ -3,6 +3,7 @@
   <div ng-repeat="product in vm.products" class="col-xs-6 col-lg-4">
     <h2>{{product.name}}</h2>
     <p>{{product.description}} </p>
+    <p><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{product.category}}</p>
     <p>{{product.price | currency}} </p>
     <p><a class="btn btn-default" ng-href="#/product/{{product.id}}" role="button">View details &raquo;</a></p>
   </div>
