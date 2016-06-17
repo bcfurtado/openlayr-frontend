@@ -17,15 +17,15 @@ angular
         controllerAs: 'vm'
       })
       .when('/product/:productId', {
-	templateUrl: 'views/product.html',
-	controller: 'ProductCtrl',
-	controllerAs: 'vm',
-	resolve: {
-	  product: function($route, productService) {
-	    var productId = $route.current.params.productId;
-	    return productService.getProduct(productId);
-	  }
-	}
+        templateUrl: 'views/product.html',
+        controller: 'ProductCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          product: function($route, productService) {
+            var productId = $route.current.params.productId;
+            return productService.getProduct(productId);
+          }
+        }
       })
       .otherwise({
         redirectTo: '/'
