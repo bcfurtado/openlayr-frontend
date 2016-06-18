@@ -1,0 +1,19 @@
+<div class="row row-offcanvas row-offcanvas-right">
+
+  <div class="row">
+    <h1>{{vm.category.name}}</h1>
+    <p>{{vm.category.description}}</p>
+  </div>
+
+  <div class="row">
+    <div ng-repeat="product in vm.products" class="col-xs-6 col-lg-4">
+      <h2>{{product.name}}</h2>
+      <p>{{product.description}} </p>
+      <p><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{product.category}}</p>
+      <p>{{product.price | currency}} </p>
+      <p><a class="btn btn-default" ng-href="#/product/{{product.id}}" role="button">View details &raquo;</a></p>
+    </div>
+  </div>
+
+
+</div>

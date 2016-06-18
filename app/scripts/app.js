@@ -27,6 +27,11 @@ angular
           }
         }
       })
+      .when('/categories/:categoryId', {
+        templateUrl: 'views/category.html',
+        controller: 'CategoryCtrl',
+        controllerAs: 'vm',
+      })
       .otherwise({
         redirectTo: '/'
       });
