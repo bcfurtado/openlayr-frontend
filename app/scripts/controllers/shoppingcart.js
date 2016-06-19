@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openlayrFrontendApp')
-  .controller('ShoppingCartCtrl', function ($q, shoppingCartService, productService) {
+  .controller('ShoppingCartCtrl', function (shoppingCartService, productService) {
     var vm = this;
     vm.getTotalPrice = getTotalPrice;
     vm.updateShoppingCart = updateShoppingCart;
@@ -10,7 +10,8 @@ angular.module('openlayrFrontendApp')
     init();
 
     function init() {
-      getProductsPromise().then(function(successCallback){
+      var productIds = shoppingCartService.getProducts();
+      productService.getProductsFromIds(productIds).then(function(successCallback){
         vm.products = successCallback;
       }, function(errorCallback) {
         console.error(errorCallback);
@@ -20,30 +21,6 @@ angular.module('openlayrFrontendApp')
     function updateShoppingCart(){
       shoppingCartService.updateShoppingCart(vm.shoppingcart);
     }
-
-    function getProductPromises(productIds){
-      return productIds.map( function(productId) {
-       return productService.getProduct(productId);
-      });
-    };
-
-    function getProductsPromise() {
-      var deferred = $q.defer()
-
-      var productIds = shoppingCartService.getProducts();
-      var productPromisses = getProductPromises(productIds);
-
-      $q.all(productPromisses).then(function(data){
-        var products = data.map(function(response){
-          return response.data;
-        });
-        deferred.resolve(products);
-      }, function(error) {
-        deferred.reject(error);
-      });
-
-      return deferred.promise;
-    };
 
     function getTotalPrice() {
       var initialPrice = 0;
