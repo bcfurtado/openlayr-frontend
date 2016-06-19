@@ -1,15 +1,14 @@
 'use strict';
 
 angular.module('openlayrFrontendApp')
-  .controller('ProductCtrl', function (product) {
+  .controller('ProductCtrl', function ($location, shoppingCartService, product) {
     var vm = this;
     vm.product = product.data;
-    // var productId = $routeParams.productId;
+    vm.addToShoppingCard = addToShoppingCard;
 
-    // productService.getProduct(productId).then(function successCallback(response) {
-    //   vm.product = response.data;
-    // }, function errorCallback(response) {
-    //   console.error(response);
-    // });
+    function addToShoppingCard(productId) {
+      shoppingCartService.addProduct(productId);
+      $location.path('/shopping_cart/');
+    };
 
   });
