@@ -5,6 +5,7 @@ angular.module('openlayrFrontendApp')
     var service = this;
     service.getShoppingCart = getShoppingCart;
     service.updateShoppingCart = updateShoppingCart;
+    service.clearShoppingCart = clearShoppingCart;
     service.addProduct = addProduct;
     service.getProducts = getProducts;
 
@@ -20,6 +21,10 @@ angular.module('openlayrFrontendApp')
 
     function updateShoppingCart(shoppingcart) {
       $cookies.put('shoppingcart', JSON.stringify(shoppingcart));
+    }
+
+    function clearShoppingCart() {
+      $cookies.remove('shoppingcart');
     }
 
     function addProduct(productId) {
