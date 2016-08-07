@@ -37,6 +37,11 @@ angular
         controller: 'ShoppingCartCtrl',
         controllerAs: 'vm',
       })
+      .when('/dashboard/', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        controllerAs: 'vm',
+      })
       .otherwise({
         redirectTo: '/'
       });
